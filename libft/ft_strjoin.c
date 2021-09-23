@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: motaouss <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: motaouss <motaouss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/29 20:34:42 by motaouss          #+#    #+#             */
-/*   Updated: 2019/06/25 03:08:40 by motaouss         ###   ########.fr       */
+/*   Created: 2021/09/23 17:20:59 by motaouss          #+#    #+#             */
+/*   Updated: 2021/09/23 17:21:00 by motaouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,27 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*fresh;
-	int		x;
-	int		y;
+	char	*s3;
+	int		i;
+	int		n;
 
-	y = 0;
-	x = 0;
-	if (!(s1) || !(s2))
-		return (0);
-	if (!(fresh = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1))))
+	i = 0;
+	n = 0;
+	if ((char) !s1 || (char) !s2)
 		return (NULL);
-	while (s1[x] != '\0')
+	s3 = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (s3 == NULL)
+		return (0);
+	while (s1[i])
 	{
-		fresh[x] = s1[x];
-		x++;
+		s3[i] = s1[i];
+		i++;
 	}
-	while (s2[y] != '\0')
+	while (s2[n])
 	{
-		fresh[x] = s2[y];
-		x++;
-		y++;
+		s3[i + n] = s2[n];
+		n++;
 	}
-	fresh[x] = '\0';
-	return (fresh);
+	s3[i + n] = '\0';
+	return (s3);
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: motaouss <motaouss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/26 01:55:11 by motaouss          #+#    #+#             */
-/*   Updated: 2021/09/23 17:10:17 by motaouss         ###   ########.fr       */
+/*   Created: 2021/09/23 17:19:27 by motaouss          #+#    #+#             */
+/*   Updated: 2021/09/23 17:19:28 by motaouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,12 @@
 
 t_list	*ft_lstnew(void *content)
 {
-	t_list	*new;
+	t_list	*lst;
 
-	if (!(new = (t_list *)malloc(sizeof(t_list))))
+	lst = malloc(sizeof(t_list));
+	if (lst == NULL)
 		return (NULL);
-	new->next = NULL;
-	if (content == NULL)
-	{
-		new->content = NULL;
-		return (new);
-	}
-	new->content = content;
-	return (new);
+	lst->content = content;
+	lst->next = NULL;
+	return (lst);
 }

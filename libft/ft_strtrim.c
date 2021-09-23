@@ -5,28 +5,89 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: motaouss <motaouss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/29 20:43:51 by motaouss          #+#    #+#             */
-/*   Updated: 2021/09/23 17:11:39 by motaouss         ###   ########.fr       */
+/*   Created: 2021/09/23 17:21:47 by motaouss          #+#    #+#             */
+/*   Updated: 2021/09/23 17:22:01 by motaouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s, char const *set)
+static int	ft_sep(char c, char *charset)
 {
-	size_t	x;
-	size_t	y;
+	int		i;
 
-	if (!s || !set)
-		return (NULL);
-	x = 0;
-	while (s[x] && (ft_strchr(set, s[x]) != NULL))
-		x++;
-	y = ft_strlen(&s[x]);
-	if (y != 0)
+	i = 0;
+	while (charset[i])
 	{
-		while (s[y + x - 1] && (ft_strchr(set, s[y + x - 1]) != NULL))
-			y--;
+		if (charset[i] == c)
+			return (1);
+		i++;
 	}
-	return (ft_substr(s, x, y));
+	return (0);
+}
+
+static int	ft_lenght(char *s1_cp, char *charset)
+{
+	int		i;
+	int		n;
+	int		size;
+
+	i = ft_strlen(s1_cp) - 1;
+	n = 0;
+	size = 0;
+	while (ft_sep(s1_cp[i], charset) == 1)
+		i--;
+	while (ft_sep(s1_cp[n], charset) == 1)
+		n++;
+	size = (i + 1) - n;
+	return (size);
+}
+
+static char	*ft_alloc(char *str, char *s1_cp, char *charset)
+{
+	int		i;
+	int		n;
+	int		x;
+
+	x = 0;
+	n = 0;
+	i = ft_strlen(s1_cp) - 1;
+	while (ft_sep(s1_cp[n], charset) == 1)
+		n++;
+	while (ft_sep(s1_cp[i], charset) == 1)
+		i--;
+	while (n <= i)
+	{
+		str[x] = s1_cp[n];
+		n++;
+		x++;
+	}
+	str[x] = '\0';
+	return (str);
+}
+
+char	*ft_strtrim(char const *s1, char const *set)
+{
+	char	*str;
+	char	*s1_cp;
+	char	*charset;
+
+	if (s1 == (void *)0)
+		return ("0");
+	s1_cp = (char *)s1;
+	charset = (char *)set;
+	if (ft_lenght(s1_cp, charset) > 0)
+	{
+		str = malloc(sizeof(char) * ((ft_lenght(s1_cp, charset) + 1)));
+		if (str == NULL)
+			return (NULL);
+	}
+	if (ft_lenght(s1_cp, charset) < 0)
+	{
+		str = malloc(sizeof(char) * (1 + 1));
+		if (str == NULL)
+			return (NULL);
+	}
+	str = ft_alloc(str, s1_cp, charset);
+	return (str);
 }

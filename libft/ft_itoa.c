@@ -3,54 +3,80 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: motaouss <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: motaouss <motaouss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/03 01:59:52 by motaouss          #+#    #+#             */
-/*   Updated: 2019/06/27 02:21:47 by motaouss         ###   ########.fr       */
+/*   Created: 2021/09/23 17:18:37 by motaouss          #+#    #+#             */
+/*   Updated: 2021/09/23 17:18:38 by motaouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	lengths(int n, size_t *x, int *z)
+static char	*ft_rev(char *re, int index)
 {
-	*x = 1;
-	if (n >= 0)
+	int		i;
+	int		n;
+	char	temp;
+
+	re[index] = '\0';
+	i = 0;
+	n = ft_strlen(re);
+	while (i < n)
 	{
-		*x = 0;
-		n = -n;
+		n--;
+		temp = re[i];
+		re[i] = re[n];
+		re[n] = temp;
+		i++;
 	}
-	*z = 1;
-	while (n / *z < -9)
-	{
-		*z *= 10;
-		*x += 1;
-	}
+	return (re);
 }
 
-char		*ft_itoa(int n)
+static char	*ft_zero(char *re)
 {
-	char	*s;
-	size_t	x;
-	size_t	y;
-	int		z;
+	re[0] = '0';
+	re[1] = '\0';
+	return (re);
+}
 
-	lengths(n, &x, &z);
-	if (!(s = (char *)malloc(sizeof(char) * (x + 2))))
-		return (NULL);
-	y = 0;
-	if (n < 0)
+static int	size_count(int n)
+{
+	int		res;
+
+	res = 0;
+	while (n != 0)
 	{
-		s[y] = '-';
-		y++;
+		n /= 10;
+		res++;
 	}
-	if (n > 0)
-		n = -n;
-	while (z >= 1)
+	return (res + 1);
+}
+
+char	*ft_itoa(int n)
+{
+	char	*re;
+	int		i;
+	int		signe;
+	long	nb;
+
+	nb = n;
+	i = 0;
+	signe = 0;
+	re = malloc(sizeof(char) * size_count(n) + 1);
+	if (re == NULL)
+		return (0);
+	if (nb == 0)
+		return (ft_zero(re));
+	if (nb < 0)
+		signe = 1;
+	if (signe == 1)
+		nb = -nb;
+	while (nb > 0)
 	{
-		s[y++] = -(n / z % 10) + 48;
-		z /= 10;
+		re[i++] = ((nb % 10) + '0');
+		nb = nb / 10;
 	}
-	s[y] = '\0';
-	return (s);
+	if (signe == 1)
+		re[i++] = '-';
+	return (ft_rev(re, i));
 }

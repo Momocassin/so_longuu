@@ -5,38 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: motaouss <motaouss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/17 20:52:45 by motaouss          #+#    #+#             */
-/*   Updated: 2021/09/23 17:10:35 by motaouss         ###   ########.fr       */
+/*   Created: 2021/09/23 17:20:01 by motaouss          #+#    #+#             */
+/*   Updated: 2021/09/23 17:20:03 by motaouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+void	*ft_memmove(void *destination, const void *source, size_t size)
 {
-	const char	*s;
-	char		*d;
+	unsigned char	*src;
+	unsigned char	*dst;
 
-	d = (char*)dest;
-	s = (const char*)src;
-	if (s == d)
-		return (dest);
-	if (d > s)
+	if (destination == NULL && source == NULL)
+		return (destination);
+	src = (unsigned char *)source;
+	dst = (unsigned char *)destination;
+	if (src < dst)
 	{
-		d += n - 1;
-		s += n - 1;
-		while (n--)
+		while (size > 0)
 		{
-			*d-- = *s--;
+			size--;
+			dst[size] = src[size];
 		}
 	}
 	else
-	{
-		while (n)
-		{
-			*d++ = *s++;
-			n--;
-		}
-	}
-	return (dest);
+		ft_memcpy(dst, src, size);
+	return ((void *)dst);
 }

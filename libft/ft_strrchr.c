@@ -3,25 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: motaouss <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: motaouss <motaouss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/09 03:45:20 by motaouss          #+#    #+#             */
-/*   Updated: 2019/06/09 07:29:05 by motaouss         ###   ########.fr       */
+/*   Created: 2021/09/23 17:21:41 by motaouss          #+#    #+#             */
+/*   Updated: 2021/09/23 17:21:43 by motaouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 char	*ft_strrchr(const char *s, int c)
 {
-	int x;
+	int		i;
+	char	*str;
 
-	x = 0;
-	while (s[x] != '\0')
-		x++;
-	while (x >= 0)
+	i = 0;
+	str = (char *)s;
+	while (str[i])
+		i++;
+	while (i + 1 > 0)
 	{
-		if (s[x] == c)
-			return ((char *)&s[x]);
-		x--;
+		if (str[i] == c)
+			return (str + i);
+		i--;
 	}
 	return (0);
 }

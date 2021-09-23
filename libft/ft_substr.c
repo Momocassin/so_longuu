@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: motaouss <motaouss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/13 18:37:31 by motaouss          #+#    #+#             */
-/*   Updated: 2021/09/23 17:11:51 by motaouss         ###   ########.fr       */
+/*   Created: 2021/09/23 17:22:06 by motaouss          #+#    #+#             */
+/*   Updated: 2021/09/23 17:22:07 by motaouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,28 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*fresh;
-	size_t	y;
+	char	*str;
+	char	*re;
+	size_t	i;
 
-	y = 0;
+	str = (char *)s;
+	i = 0;
 	if (!s)
 		return (NULL);
-	if (ft_strlen(s) < start)
-		return (ft_strdup(""));
-	if (!(fresh = (char *)malloc(sizeof(char) * (len + 1))))
+	re = malloc(sizeof(char) * len + 1);
+	if (re == NULL)
 		return (NULL);
-	while (y < len)
+	if (start >= (unsigned int)ft_strlen(s))
 	{
-		fresh[y] = s[start + y];
-		y++;
+		re[0] = '\0';
+		return (re);
 	}
-	fresh[y] = '\0';
-	return (fresh);
+	while (i < len && str[start])
+	{
+		re[i] = str[start];
+		start++;
+		i++;
+	}
+	re[i] = '\0';
+	return (re);
 }

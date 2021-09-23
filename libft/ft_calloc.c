@@ -5,19 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: motaouss <motaouss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/11 19:56:55 by motaouss          #+#    #+#             */
-/*   Updated: 2021/09/23 17:09:32 by motaouss         ###   ########.fr       */
+/*   Created: 2021/09/23 17:17:51 by motaouss          #+#    #+#             */
+/*   Updated: 2021/09/23 17:17:53 by motaouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void	*ft_calloc(size_t count, size_t size)
 {
-	char	*tab;
+	void	*re;
+	char	*str;
+	size_t	i;
 
-	if (!(tab = malloc(size * nmemb)))
+	i = 0;
+	re = malloc(size * count);
+	if (re == NULL)
 		return (NULL);
-	ft_memset(tab, 0, nmemb);
-	return (tab);
+	str = (char *)re;
+	while (i <= size * count)
+	{
+		str[i] = '\0';
+		i++;
+	}
+	return (re);
 }

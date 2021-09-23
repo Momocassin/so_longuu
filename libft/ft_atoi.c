@@ -5,33 +5,36 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: motaouss <motaouss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/04 21:20:36 by motaouss          #+#    #+#             */
-/*   Updated: 2021/09/23 17:09:16 by motaouss         ###   ########.fr       */
+/*   Created: 2021/09/23 17:17:31 by motaouss          #+#    #+#             */
+/*   Updated: 2021/09/23 17:17:34 by motaouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 int	ft_atoi(const char *str)
 {
-	int	x;
-	int	y;
-	int	signe;
+	int	i;
+	int	sign;
+	int	re;
 
-	x = 0;
-	y = 0;
-	signe = 1;
-	while (str[x] == ' ' || str[x] == '\f' || str[x] == '\t' || str[x] == '\v'
-			|| str[x] == '\n' || str[x] == '\r')
-		x++;
-	if (str[x] == '+' || str[x] == '-')
+	re = 0;
+	i = 0;
+	sign = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		if (str[x] == '-')
-			signe = -1;
-		x++;
+		if (str[i] == '-')
+			sign++;
+		i++;
 	}
-	while (str[x] >= '0' && str[x] <= '9')
+	while (str[i] >= '0' && str[i] <= '9' && str[i])
 	{
-		y = (y * 10) + (str[x] - '0');
-		x++;
+		re = re * 10 + (str[i++] - '0');
 	}
-	return (y * signe);
+	if (sign == 1)
+		return ((int) -re);
+	else
+		return ((int)re);
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: motaouss <motaouss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/19 10:00:58 by motaouss          #+#    #+#             */
-/*   Updated: 2021/09/23 17:10:22 by motaouss         ###   ########.fr       */
+/*   Created: 2021/09/23 17:19:33 by motaouss          #+#    #+#             */
+/*   Updated: 2021/09/23 17:19:34 by motaouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,13 @@
 
 int	ft_lstsize(t_list *lst)
 {
-	int		x;
-	t_list	*copy;
+	int		i;
 
-	copy = lst;
-	x = 0;
-	if (copy)
+	i = 0;
+	while (lst)
 	{
-		while (copy)
-		{
-			copy = copy->next;
-			x++;
-		}
+		lst = lst->next;
+		i++;
 	}
-	return (x);
+	return (i);
 }

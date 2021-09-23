@@ -5,29 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: motaouss <motaouss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/04 20:22:09 by motaouss          #+#    #+#             */
-/*   Updated: 2021/09/23 17:11:03 by motaouss         ###   ########.fr       */
+/*   Created: 2021/09/23 17:20:54 by motaouss          #+#    #+#             */
+/*   Updated: 2021/09/23 17:20:55 by motaouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
 char	*ft_strdup(const char *s1)
 {
-	char	*dest;
-	int		x;
+	int		size;
+	char	*s2;
+	int		i;
 
-	x = 0;
-	while (s1[x] != '\0')
-		x++;
-	if (!(dest = malloc(sizeof(*dest) * (x + 1))))
+	i = 0;
+	size = ft_strlen(s1);
+	s2 = malloc(sizeof(char) * (size + 1));
+	if (s2 == NULL)
 		return (0);
-	x = 0;
-	while (s1[x] != '\0')
+	while (s1[i])
 	{
-		dest[x] = s1[x];
-		x++;
+		s2[i] = s1[i];
+		i++;
 	}
-	dest[x] = '\0';
-	return (dest);
+	s2[i] = '\0';
+	return (s2);
 }

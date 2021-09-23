@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: motaouss <motaouss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/04 20:15:52 by motaouss          #+#    #+#             */
-/*   Updated: 2021/09/23 17:11:23 by motaouss         ###   ########.fr       */
+/*   Created: 2021/09/23 17:21:14 by motaouss          #+#    #+#             */
+/*   Updated: 2021/09/23 17:21:16 by motaouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 size_t	ft_strlen(const char *str)
 {
-	size_t	x;
+	size_t		i;
 
-	x = 0;
-	while (str[x] != '\0')
-		x++;
-	return (x);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }

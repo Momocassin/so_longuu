@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: motaouss <motaouss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/12 15:59:05 by motaouss          #+#    #+#             */
-/*   Updated: 2021/09/23 17:09:25 by motaouss         ###   ########.fr       */
+/*   Created: 2021/09/23 17:17:40 by motaouss          #+#    #+#             */
+/*   Updated: 2021/09/23 17:17:43 by motaouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,17 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	unsigned char	*copy;
-	size_t			x;
+	size_t	i;
+	char	*str;
 
-	x = 0;
-	copy = (unsigned char *)s;
-	while (x < n)
+	str = (char *)s;
+	i = 0;
+	if (n > 0)
 	{
-		copy[x] = '\0';
-		x++;
+		while (i < n)
+		{
+			str[i] = '\0';
+			i++;
+		}
 	}
 }
