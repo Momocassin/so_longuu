@@ -3,39 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
+/*   By: motaouss <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/02 01:41:51 by gpaul             #+#    #+#             */
-/*   Updated: 2021/06/30 16:06:31 by gpaul            ###   ########.fr       */
+/*   Created: 2019/11/13 18:37:31 by motaouss          #+#    #+#             */
+/*   Updated: 2020/01/04 07:51:42 by motaouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char				*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*str;
-	char	*re;
-	size_t	i;
+	char			*fresh;
+	size_t			y;
 
-	str = (char *)s;
-	i = 0;
+	y = 0;
 	if (!s)
 		return (NULL);
-	re = malloc(sizeof(char) * len + 1);
-	if (re == NULL)
+	if (ft_strlen(s) < start)
+		return (ft_strdup(""));
+	if (!(fresh = (char *)malloc(sizeof(char) * (len + 1))))
 		return (NULL);
-	if (start >= (unsigned int)ft_strlen(s))
+	while (y < len)
 	{
-		re[0] = '\0';
-		return (re);
+		fresh[y] = s[start + y];
+		y++;
 	}
-	while (i < len && str[start])
-	{
-		re[i] = str[start];
-		start++;
-		i++;
-	}
-	re[i] = '\0';
-	return (re);
+	fresh[y] = '\0';
+	return (fresh);
 }

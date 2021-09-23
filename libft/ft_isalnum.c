@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
+/*   By: motaouss <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/26 15:40:36 by gpaul             #+#    #+#             */
-/*   Updated: 2021/06/30 16:12:31 by gpaul            ###   ########.fr       */
+/*   Created: 2019/04/04 22:47:16 by motaouss          #+#    #+#             */
+/*   Updated: 2019/04/11 02:46:22 by motaouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalnum(int i)
+int	ft_isalnum(int c)
 {
-	if ((i >= 65 && i <= 90) || (i >= 97 && i <= 122) || (i >= 48 && i <= 57))
+	if (ft_isalpha(c) || ft_isdigit(c))
 		return (1);
 	return (0);
 }

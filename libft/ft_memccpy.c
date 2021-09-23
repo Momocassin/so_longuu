@@ -3,35 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
+/*   By: motaouss <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/03 03:09:39 by gpaul             #+#    #+#             */
-/*   Updated: 2021/06/30 16:02:40 by gpaul            ###   ########.fr       */
+/*   Created: 2019/04/17 18:46:34 by motaouss          #+#    #+#             */
+/*   Updated: 2019/06/25 04:46:31 by motaouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	size_t			i;
-	unsigned char	*dst;
-	unsigned char	*str;
-	int				x;
-
-	x = 0;
-	dst = (unsigned char *)dest;
-	str = (unsigned char *)src;
-	i = 0;
-	while (i < n && x == 0)
+	while (n--)
 	{
-		if (str[i] == (unsigned char)c)
-			x = i + 1;
-		dst[i] = str[i];
-		i++;
+		*(unsigned char *)dst++ = *(unsigned char *)src;
+		if (*(unsigned char *)src++ == (unsigned char)c)
+			return (dst);
 	}
-	if (x == 0)
-		return (NULL);
-	else
-		return ((void *)dst + x);
+	return (NULL);
 }

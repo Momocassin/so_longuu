@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
+/*   By: motaouss <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/02 17:54:46 by gpaul             #+#    #+#             */
-/*   Updated: 2021/06/30 16:08:00 by gpaul            ###   ########.fr       */
+/*   Created: 2019/04/26 01:54:46 by motaouss          #+#    #+#             */
+/*   Updated: 2019/06/25 03:07:50 by motaouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,19 @@
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char				*str;
-	char				*re;
-	unsigned int		i;
+	char			*fresh;
+	unsigned int	x;
 
-	i = 0;
-	str = (char *)s;
-	if (!s)
-		return (NULL);
-	re = malloc(sizeof(char) * (ft_strlen(str) + 1));
-	if (re == NULL)
-		return (NULL);
-	while (s[i])
+	x = 0;
+	if (s == NULL)
+		return (0);
+	if (!(fresh = malloc(sizeof(char) * (ft_strlen(s) + 1))))
+		return (0);
+	while (s[x] != '\0')
 	{
-		re[i] = f(i, str[i]);
-		i++;
+		fresh[x] = f(x, s[x]);
+		x++;
 	}
-	re[i] = '\0';
-	return (re);
+	fresh[x] = '\0';
+	return (fresh);
 }

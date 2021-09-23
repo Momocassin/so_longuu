@@ -3,33 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
+/*   By: motaouss <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/03 01:48:36 by gpaul             #+#    #+#             */
-/*   Updated: 2021/06/30 16:11:01 by gpaul            ###   ########.fr       */
+/*   Created: 2019/04/17 20:52:45 by motaouss          #+#    #+#             */
+/*   Updated: 2019/06/25 03:17:31 by motaouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *destination, const void *source, size_t size)
+void			*ft_memmove(void *dest, const void *src, size_t n)
 {
-	unsigned char	*src;
-	unsigned char	*dst;
+	const char	*s;
+	char		*d;
 
-	if (destination == NULL && source == NULL)
-		return (destination);
-	src = (unsigned char *)source;
-	dst = (unsigned char *)destination;
-	if (src < dst)
+	d = (char*)dest;
+	s = (const char*)src;
+	if (s == d)
+		return (dest);
+	if (d > s)
 	{
-		while (size > 0)
+		d += n - 1;
+		s += n - 1;
+		while (n--)
 		{
-			size--;
-			dst[size] = src[size];
+			*d-- = *s--;
 		}
 	}
 	else
-		ft_memcpy(dst, src, size);
-	return ((void *)dst);
+	{
+		while (n)
+		{
+			*d++ = *s++;
+			n--;
+		}
+	}
+	return (dest);
 }
