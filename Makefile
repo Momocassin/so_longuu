@@ -6,23 +6,23 @@
 #    By: motaouss <motaouss@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/23 16:47:11 by motaouss          #+#    #+#              #
-#    Updated: 2021/09/23 16:47:18 by motaouss         ###   ########.fr        #
+#    Updated: 2021/09/23 17:35:08 by motaouss         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	so_long
 
-SRCS			=	main.c				\
-					utils.c				\
-					copy_map.c			\
-					map_init.c			\
-					check_map.c			\
-					text_init.c			\
-					initial_render.c	\
-					key_press.c			\
-					move_rend.c			\
-					update_rend.c		\
-					free_alloc.c
+SRCS			=	main.c	\
+					bref.c	\
+					map_cop.c	\
+					mapini.c	\
+					check.c	\
+					texto.c	\
+					eren_render.c	\
+					ipod_touch.c	\
+					move_fm.c	\
+					rend.c	\
+					freedom.c
 
 OBJS			=	${addprefix srcs/,${SRCS:.c=.o}}
 
