@@ -6,7 +6,7 @@
 /*   By: motaouss <motaouss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:18:39 by motaouss          #+#    #+#             */
-/*   Updated: 2021/09/22 00:11:09 by motaouss         ###   ########.fr       */
+/*   Updated: 2021/09/23 16:38:46 by motaouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static void	change_map(int Y, int X, t_every *info)
 {
-	int	X_p;
-	int	Y_p;
+	int	Posx;
+	int	Posy;
 
-	X_p = info->map->player.X;
-	Y_p = info->map->player.Y;
+	Posx = info->map->player.X;
+	Posy = info->map->player.Y;
 	info->map->map[Y][X] = 'P';
-	info->map->map[Y_p][X_p] = '0';
+	info->map->map[Posy][Posx] = '0';
 	info->map->player.Y = Y;
 	info->map->player.X = X;
 	info->key->nbr_press += 1;
@@ -55,42 +55,42 @@ static int	check_event(t_every *info, int X, int Y, char **map)
 	return (0);
 }
 
-static void	deplacement_hin(t_every *info, int Y_p, int X_p)
+static void	deplacement_hin(t_every *info, int Posy, int Posx)
 {
 	if (info->key->A == 1)
 	{
-		if (check_event(info, X_p - 1, Y_p, info->map->map) == 0
-			&& info->map->map[Y_p][X_p - 1] != '1')
-			change_map(Y_p, X_p - 1, info);
+		if (check_event(info, Posx - 1, Posy, info->map->map) == 0
+			&& info->map->map[Posy][Posx - 1] != '1')
+			change_map(Posy, Posx - 1, info);
 		info->key->A = 0;
 	}
 	else if (info->key->D == 1)
 	{
-		if (check_event(info, X_p + 1, Y_p, info->map->map) == 0
-			&& info->map->map[Y_p][X_p + 1] != '1')
-			change_map(Y_p, X_p + 1, info);
+		if (check_event(info, Posx + 1, Posy, info->map->map) == 0
+			&& info->map->map[Posy][Posx + 1] != '1')
+			change_map(Posy, Posx + 1, info);
 		info->key->D = 0;
 	}
 }
 
-static void	deplacement_1(t_every *info, int X_p, int Y_p)
+static void	deplacement_1(t_every *info, int Posx, int Posy)
 {
 	if (info->key->W == 1)
 	{
-		if (check_event(info, X_p, Y_p - 1, info->map->map) == 0
-			&& info->map->map[Y_p - 1][X_p] != '1')
-			change_map(Y_p - 1, X_p, info);
+		if (check_event(info, Posx, Posy - 1, info->map->map) == 0
+			&& info->map->map[Posy - 1][Posx] != '1')
+			change_map(Posy - 1, Posx, info);
 		info->key->W = 0;
 	}
 	else if (info->key->S == 1)
 	{
-		if (check_event(info, X_p, Y_p + 1, info->map->map) == 0
-			&& info->map->map[Y_p + 1][X_p] != '1')
-			change_map(Y_p + 1, X_p, info);
+		if (check_event(info, Posx, Posy + 1, info->map->map) == 0
+			&& info->map->map[Posy + 1][Posx] != '1')
+			change_map(Posy + 1, Posx, info);
 		info->key->S = 0;
 	}
 	else
-		deplacement_hin(info, Y_p, X_p);
+		deplacement_hin(info, Posy, Posx);
 }
 
 int	updatuu(t_every *info)
